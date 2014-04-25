@@ -8,8 +8,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GraphicsMain extends ApplicationAdapter {
 	
-	private OrthographicCamera camera;
-	private SpriteBatch batch;
+	public static OrthographicCamera camera;
+	public SpriteBatch batch;
 	
 	public static float sWidth, sHeight;
 	
@@ -35,14 +35,13 @@ public class GraphicsMain extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		batch.setProjectionMatrix(camera.combined);
-		
+
+		gsm.update(Gdx.graphics.getDeltaTime());
 		gsm.draw();
 	}
 	
 	@Override
 	public void dispose(){
 		batch.dispose();
-		
-		gsm.update(Gdx.graphics.getDeltaTime());
 	}
 }

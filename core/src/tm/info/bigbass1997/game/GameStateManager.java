@@ -2,6 +2,7 @@ package tm.info.bigbass1997.game;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 
 import tm.info.bigbass1997.game.entities.Player;
@@ -17,16 +18,18 @@ public class GameStateManager {
 	public Player player;
 	private ShapeRenderer sr;
 	
-	private World world;
+	public World world;
+	public Box2DDebugRenderer debugRenderer;
 	
 	public final int MENUSTATE = 0;
 	public final int PLAYSTATE = 1;
 	
 	public GameStateManager(){
-		player = new Player();
-		sr = new ShapeRenderer();
-		
 		world = new World(new Vector2(0, -10), true);
+		debugRenderer = new Box2DDebugRenderer();
+		
+		player = new Player(this);
+		sr = new ShapeRenderer();
 	}
 	
 	public void setState(int state){
